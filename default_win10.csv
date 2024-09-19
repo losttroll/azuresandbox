@@ -1,6 +1,6 @@
 product,install_path,mode,override_file_destination,install_file_name,operation,install_args,operation_location
 7zip,C:\\Program Files\\7-Zip\\7z.exe,install,,7zip.msi,web_download,/quiet,https://7-zip.org/a/7z2408-x64.msi
-Burpsuite Community,$env:USERPROFILE\AppData\Local\BurpSuiteCommunity\BurpSuiteCommunity.exe,install,,burpsuite.exe,web_download, -q -c,https://portswigger-cdn.net/burp/releases/download?product=community&version=2024.6.6&type=WindowsX64
+Burpsuite Community,C:\Program Files\BurpSuiteCommunity\BurpSuiteCommunity.exe,install,,burpsuite.exe,web_download, -q -c,https://portswigger-cdn.net/burp/releases/download?product=community&version=2024.6.6&type=WindowsX64
 Notepad++,C:\\Program Files\\Notepad++\\notepad++.exe,install,,notepadplusplus.exe,web_download,/S,https://github.com/notepad-plus-plus/notepad-plus-plus/releases/download/v8.6.7/npp.8.6.7.Installer.x64.exe
 SysInternals,FILEDESTINATION\\SysInternals,extract,,SysinternalsSuite.zip,web_download,,https://download.sysinternals.com/files/SysinternalsSuite.zip
 Sysmon Config,,download,,sysmonconfig.xml,web_download,,https://raw.githubusercontent.com/olafhartong/sysmon-modular/master/sysmonconfig.xml
