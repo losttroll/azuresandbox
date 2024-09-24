@@ -85,12 +85,21 @@ function InstallProduct{
 
 cls
 # Download and Import the support files CSV
+
+
+if (-Not (Test-Path "./template.txt")) {
+    
+
 $template = "default_win10.csv"
 $template_download = "$env:TEMP\$template"
+write-host "[*] Downloading template"
 Invoke-WebRequest "https://raw.githubusercontent.com/losttroll/azuresandbox/main/$template" -OutFile $template_download
-
+} else {
+write-host "[*] Using local template"
+$template_download = "template.txt"
+}
 $csvData = Import-Csv -Path $template_download
-$file_destination = "c:\\td1"
+#$file_destination = "c:\\td1"
 
 # Iterate through each row in the CSV
 foreach ($row in $csvData) {
@@ -122,35 +131,38 @@ foreach ($row in $csvData) {
 
     #overside source
     if ($override_destination.Length -gt 1) {
-        write-host "Overriding Source"
+        write-host $override_destination
+        write-host "[!] Overriding Source or file destination"
         if ($override_destination.Contains("FILEDESTINATION")) {
-        
-        $override_destination = $override_destination.Replace("FILEDESTINATION", $download_folder)
-        write-host "Source Files updated to:  $download_folder"
+            write-host 1
+            $download_folder = $override_destination.Replace("FILEDESTINATION", $download_folder)
+            write-host "[+] Source Files updated to:  $download_folder"
+            #$download_folder = $override_destination
+         
         }
 
         #write-host  1, $file_destination
         #write-host 2, $override_destination
-        $download_folder = $override_destination
+        #$download_folder = $override_destination
     }
      
 
     #Download or copy file
     if ($mode -in @("install", "extract", "download")) {
         if ($operation -eq "web_download") {
-        DownloadFile -url $operation_location -downloadpath $file_destination -filename $file_name -product $product
+        DownloadFile -url $operation_location -downloadpath $download_folder -filename $file_name -product $product
             }
         }
 
     #Extract file
     if ($mode -in @("extract")) {
-        extractZip -targetpath $install_path -product $product -filename $file_name -sourcedir $file_destination
+        extractZip -targetpath $install_path -product $product -filename $file_name -sourcedir $download_folder
 
         }  
     
     #Install file
     if ($mode -in @("install")) {
-         InstallProduct -filename $file_name -sourcelocation $file_destination -product $product -install_args $install_args -checkpath $install_path
+         InstallProduct -filename $file_name -sourcelocation $download_folder -product $product -install_args $install_args -checkpath $install_path
          }
 
     }
