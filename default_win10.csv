@@ -4,4 +4,4 @@ Burpsuite Community,C:\Program Files\BurpSuiteCommunity\BurpSuiteCommunity.exe,i
 Notepad++,C:\\Program Files\\Notepad++\\notepad++.exe,install,,notepadplusplus.exe,web_download,/S,https://github.com/notepad-plus-plus/notepad-plus-plus/releases/download/v8.6.7/npp.8.6.7.Installer.x64.exe
 SysInternals,FILEDESTINATION\\SysInternals,extract,,SysinternalsSuite.zip,web_download,,https://download.sysinternals.com/files/SysinternalsSuite.zip
 Sysmon Config,,download,,sysmonconfig.xml,web_download,,https://raw.githubusercontent.com/olafhartong/sysmon-modular/master/sysmonconfig.xml
-Sysmon,C:\\Windows\\sysmon.exe,install,FILEDESTINATION\\SysInternals,Sysmon64.exe,local_file, -i FILEDESTINATION\\sysmonconfig.xml,
+Sysmon,C:\\Windows\\sysmon.exe,install,FILEDESTINATION\\SysInternals,Sysmon64.exe,local_file, -i FILEDESTINATION\\sysmonconfig.xml -accepteula,
